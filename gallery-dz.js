@@ -18,7 +18,7 @@ const refs = {
 
     return `
     <li class="gallery__item">
-    <a class="gallery__link" href=${original}>
+    <a class="gallery__link" href=${original} onclick="event.preventDefault()">
     <img class='gallery__image' data-source=${original} src=${preview} alt=${description}   />
     </a></li>`
   };
@@ -30,11 +30,12 @@ const refs = {
 
   // добавляю слушатель на открытия картинок
 
-  document.querySelector('.gallery__image').addEventListener('click', OnImage);
-  document.querySelector('.gallery__link').addEventListener('click',(e) => {e.preventDefault()}, false);
-
+  refs.galleryEl.addEventListener('click', OnImage);
+  
 
   function OnImage(event) {
+
+    if(event.target.nodeName == 'IMG'){
 
     refs.modalWindow.classList.add('is-open');
     refs.modalImage.src = event.target.dataset.source;
@@ -61,6 +62,7 @@ const refs = {
   refs.modalImage.src = images[someIndex].original;
  
 };
+}
 }
 
 // добавляю слушатель на закрытие картинок, на пролистывание
