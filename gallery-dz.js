@@ -1,6 +1,5 @@
 
-import images from './gallery-items.js'
-
+import images from './gallery-items.js';
 
 
 const refs = {
@@ -18,9 +17,10 @@ const refs = {
   const listEl = ({preview, original, description}) => {
 
     return `
-    <li>
-    <img class='image' data-source=${original} src=${preview} alt=${description}  width =400  height = 200>
-  </li>`
+    <li class="gallery__item">
+    <a class="gallery__link" href=${original}>
+    <img class='gallery__image' data-source=${original} src=${preview} alt=${description}   />
+    </a></li>`
   };
 
 
@@ -30,9 +30,13 @@ const refs = {
 
   // добавляю слушатель на открытия картинок
 
-  document.querySelector('.image').addEventListener('click', OnImage);
+  document.querySelector('.gallery__image').addEventListener('click', OnImage);
+  document.querySelector('.gallery__link').addEventListener('click',(e) => {e.preventDefault()}, false);
+
 
   function OnImage(event) {
+
+    console.log(event.target);
 
     refs.modalWindow.classList.add('is-open');
     refs.modalImage.src = event.target.dataset.source;
