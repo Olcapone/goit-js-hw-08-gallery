@@ -36,8 +36,6 @@ const refs = {
 
   function OnImage(event) {
 
-    console.log(event.target);
-
     refs.modalWindow.classList.add('is-open');
     refs.modalImage.src = event.target.dataset.source;
 
