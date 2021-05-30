@@ -58,6 +58,8 @@ const refs = {
         someIndex = currentId + 1;
           if (someIndex == images.length)    someIndex = 0;              
    }
+  
+     else if(typeof someIndex === 'undefined')  someIndex = currentId;
 
   refs.modalImage.src = images[someIndex].original;
  
